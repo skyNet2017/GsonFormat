@@ -3,7 +3,7 @@
 {
      "name": "王五",
      "gender": "man",
-     "age": 15,
+     "uid": 15,
      "height": "140cm"
  }
 测试2: 多种模型测试

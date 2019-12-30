@@ -1,5 +1,6 @@
 package org.gsonformat.intellij.entity;
 
+
 import org.apache.http.util.TextUtils;
 import org.gsonformat.intellij.common.CheckUtil;
 import org.jdesktop.swingx.ux.CellProvider;
@@ -80,10 +81,22 @@ public class FieldEntity implements Selector, CellProvider {
     }
 
     public String getFullNameType() {
+
+        String filedName = getGenerateFieldName();
+
+        String filedType = type;
         if (targetClass != null) {
-            return targetClass.getQualifiedName();
+            filedType =  targetClass.getQualifiedName();
         }
-        return type;
+
+        //如果key里带id/Id,且将被指定为int,Integer,那么自动将其指定为long
+        if("int".equals(filedType) || "Integer".equals(filedType)){
+            if(filedName.contains("id") || filedName.contains("Id")){
+                filedType = "long";
+            }
+        }
+
+        return filedType;
     }
 
     public void setType(String type) {
