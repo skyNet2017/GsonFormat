@@ -4,6 +4,8 @@
      "name": "王五",
      "gender": "man",
      "uid": 15,
+      "cntId": 33,
+     "cnt": 33,
      "height": "140cm"
  }
 测试2: 多种模型测试
@@ -12,11 +14,13 @@
     "name": "王五",
     "gender": "man",
     "age": 15,
+     "uid": 15,
     "height": "140cm",
     "addr": {
         "province": "fujian",
         "city": "quanzhou",
-        "code": "300000"
+        "code": "300000",
+        "cityId":87
     },
     "hobby": [
         {

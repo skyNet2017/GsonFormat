@@ -66,6 +66,9 @@ public class FieldEntity implements Selector, CellProvider {
         if (targetClass != null) {
             return targetClass.getClassName();
         }
+        if(nameContainsId() && isTypeInt()){
+            type = "long";
+        }
         return type;
     }
 
@@ -77,7 +80,22 @@ public class FieldEntity implements Selector, CellProvider {
         if (i > 0) {
             return type.substring(i);
         }
+        if(nameContainsId() && isTypeInt()){
+            type = "long";
+        }
         return type;
+    }
+
+    private boolean nameContainsId(){
+        if(TextUtils.isEmpty(fieldName)){
+            return false;
+        }
+        String filedName = getGenerateFieldName();
+        return filedName.contains("id") || filedName.contains("Id");
+    }
+
+    private boolean isTypeInt(){
+        return "int".equals(type) || "Integer".equals(type);
     }
 
     public String getFullNameType() {
@@ -95,12 +113,17 @@ public class FieldEntity implements Selector, CellProvider {
                 filedType = "long";
             }
         }
+        type = "long";
 
         return filedType;
     }
 
     public void setType(String type) {
         this.type = type;
+        if(nameContainsId() && isTypeInt()){
+            this.type = "long";
+        }
+
     }
 
     public void checkAndSetType(String text) {
